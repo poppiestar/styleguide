@@ -89,6 +89,11 @@ describe('Searching for colour hex values', function () {
                 expect(match).to.have.a.property('position');
                 expect(match.position).to.be.a('number');
             });
+
+            it('has a weight that is a number', function () {
+                expect(match).to.have.a.property('weight');
+                expect(match.weight).to.be.a('number');
+            });
         });
 
         describe('search results', function () {
@@ -96,32 +101,32 @@ describe('Searching for colour hex values', function () {
                 var results = search.findColours("#f00 #00ff00 #0f0 #f00");
 
                 expect(results.length).to.equal(4);
-                expect(results[0]).to.deep.equal({ value: '#f00', position: 0 });
-                expect(results[1]).to.deep.equal({ value: '#00ff00', position: 5 });
-                expect(results[2]).to.deep.equal({ value: '#0f0', position: 13 });
-                expect(results[3]).to.deep.equal({ value: '#f00', position: 18 });
+                expect(results[0]).to.deep.equal({ value: '#f00', position: 0, weight: 125 });
+                expect(results[1]).to.deep.equal({ value: '#00ff00', position: 5, weight: 212 });
+                expect(results[2]).to.deep.equal({ value: '#0f0', position: 13, weight: 212  });
+                expect(results[3]).to.deep.equal({ value: '#f00', position: 18, weight: 125  });
             });
 
             it('finds three character hex values', function () {
                 var results = search.findColours("#f00");
 
                 expect(results.length).to.equal(1);
-                expect(results[0]).to.deep.equal({ value: '#f00', position: 0 });
+                expect(results[0]).to.deep.equal({ value: '#f00', position: 0, weight: 125 });
             });
 
             it('six character hex values', function () {
                 var results = search.findColours("#ff0000");
 
                 expect(results.length).to.equal(1);
-                expect(results[0]).to.deep.equal({ value: '#ff0000', position: 0 });
+                expect(results[0]).to.deep.equal({ value: '#ff0000', position: 0, weight: 125 });
             });
 
             it('finds a mix of hex values', function () {
                 var results = search.findColours("#ff0000 #00f");
 
                 expect(results.length).to.equal(2);
-                expect(results[0]).to.deep.equal({ value: '#ff0000', position: 0 });
-                expect(results[1]).to.deep.equal({ value: '#00f', position: 8 });
+                expect(results[0]).to.deep.equal({ value: '#ff0000', position: 0, weight: 125 });
+                expect(results[1]).to.deep.equal({ value: '#00f', position: 8, weight: 66 });
             });
 
             it('should not return an invalid hex value', function () {
