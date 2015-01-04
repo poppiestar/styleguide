@@ -16,16 +16,13 @@ glob('sass/**/*.scss', function (err, files) {
     for (var file in files) {
         var openFile = files[file];
 
-        fs.readFile(openFile, 'utf8', function (err, data) {
-            if (err) {
-                return console.log(err);
-            }
+        var data = fs.readFileSync(openFile, 'utf8');
 
-            filenames.push({
-                filename: openFile,
-                lines: search.searchFile(data)
-            });
+        filenames.push({
+            filename: openFile,
+            lines: search.searchFile(data)
         });
     }
+    console.log(JSON.stringify(filenames));
 });
 

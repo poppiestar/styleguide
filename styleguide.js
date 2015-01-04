@@ -1,52 +1,45 @@
 
+var express = require('express');
+var app = express();
+
+var glob = require('glob');
 var fs = require('fs');
+var search = require('./lib/search');
 
-// open the sass file
+app.set('view engine', 'jade');
 
+app.use(express.static(__dirname + '/public'));
 
-function extractColours(block) {
-    var pairs = [];
-    var lines = block.split('\n');
+app.get('/', function (req, res) {
+    res.render('index', { title: 'Hello', message: 'there' });
+});
 
-    // only process actual lines
-    for (var line in lines) {
-        if (lines[line].trim() !== '') {
-            var pair = lines[line].split(':');
-            pairs.push({ variable: pair[0].trim(), value: pair[1].trim() });
+app.get('/colours', function (req, res) {
+    var filenames = [];
+
+    glob('sass/**/*.scss', function (err, files) {
+        if (err) {
+            return console.log(err);
         }
-    }
 
-    return pairs;
-}
+        // open each file and look for colour hex values
+        for (var file in files) {
+            var openFile = files[file];
+            var data = fs.readFileSync(openFile, 'utf8');
 
-fs.readFile('sass/variables.scss', 'utf8', function (err, data) {
-    if (err) {
-        return console.log(err);
-    }
-
-    // split file up by thingies
-    var sections = data.split('// ---------------------------------------------------\n');
-
-    // remove empty rows
-    for (var section in sections) {
-        if (sections[section].trim() === '') {
-            sections.splice(section, 1);
+            filenames.push({
+                filename: openFile,
+                lines: search.searchFile(data)
+            });
         }
-    }
+        res.render('colours', { filenames: filenames });
+    });
+});
 
-    var groups = [];
-    var counter = -1;
+var server = app.listen(3000, function () {
+    var host = server.address().address;
+    var port = server.address().port;
 
-    // create group objects
-    for (section in sections) {
-        if ( sections[section].substring(0, 2) === '//' ) {
-            groups.push({ title: sections[section].substring(3).trim() });
-            counter++;
-        } else {
-            groups[counter].body = extractColours(sections[section]);
-        }
-    }
-
-    console.log(JSON.stringify(groups));
+    console.log('Example app listening at http://%s:%s', host, port);
 });
 

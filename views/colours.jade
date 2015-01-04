@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 This is the main content
+
+    #files
+        each file in filenames
+            .file
+                h2= file.filename
+                ul#colours
+                    each line in file.lines
+                        each colour in line.colours
+                            li
+                                .colour
+                                    .colourSwatch(class=colour.weight < 130 ? 'dark' : 'light', style="background: #{colour.value}") #{colour.value}
+                                    p Line: #{line.line}, Position: #{colour.position}
+
