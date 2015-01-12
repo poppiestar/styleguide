@@ -4,15 +4,15 @@
   "description": "Some helper files for building a living styleguide",
   "main": "styleguide.js",
   "scripts": {
-    "test": "npm test"
+    "start": "node styleguide.js",
+    "test": "mocha"
   },
   "author": "Drew Miller",
   "license": "MIT",
   "dependencies": {
     "express": "^4.10.6",
     "glob": "^4.3.2",
-    "jade": "^1.8.2",
-    "nodegrep": "^0.1.2"
+    "jade": "^1.8.2"
   },
   "devDependencies": {
     "chai": "^1.10.0"
