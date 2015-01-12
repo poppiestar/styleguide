@@ -1,5 +1,29 @@
+#content {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+.colours {
+    list-style: none;
+    padding: 0;
+}
+
+.colour {
+    display: inline-block;
+    width: 150px;
+    margin: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 1px 1px #abc;
+}
+
+
 .colourSwatch {
     border: 1px solid grey;
+    text-align: center;
+    padding: 20px 0;
 }
 
 .dark {

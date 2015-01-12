@@ -1,17 +1,18 @@
 extends layout
 
 block content
-    h1 This is the main content
+    h1 SASS Colours
+
+    p The following colours have been found defined in your SCSS files.
 
     #files
         each file in filenames
             .file
                 h2= file.filename
-                ul#colours
+                ul.colours
                     each line in file.lines
                         each colour in line.colours
-                            li
-                                .colour
-                                    .colourSwatch(class=colour.weight < 130 ? 'dark' : 'light', style="background: #{colour.value}") #{colour.value}
-                                    p Line: #{line.line}, Position: #{colour.position}
+                            li.colour
+                                .colourSwatch(class=colour.weight < 130 ? 'dark' : 'light', style="background: #{colour.value}") #{colour.value}
+                                p Line: #{line.line}, Position: #{colour.position}
 
