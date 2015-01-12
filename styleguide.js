@@ -36,6 +36,10 @@ app.get('/colours', function (req, res) {
     });
 });
 
+app.get('/images', function (req, res) {
+    res.render('images', {});
+});
+
 var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
