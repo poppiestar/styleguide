@@ -1,4 +1,6 @@
 
+'use strict';
+
 var express = require('express');
 var app = express();
 
@@ -8,7 +10,14 @@ var search = require('./lib/search');
 
 app.set('view engine', 'jade');
 
+app.locals = {
+    component: function () {
+        return 'This is the helper text';
+    }
+};
+
 app.use(express.static(__dirname + '/public'));
+
 
 app.get('/', function (req, res) {
     res.render('index', { title: 'Hello', message: 'there' });
