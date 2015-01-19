@@ -11,8 +11,12 @@ var search = require('./lib/search');
 app.set('view engine', 'jade');
 
 app.locals = {
-    component: function () {
-        return 'This is the helper text';
+    component: function (slug, properties) {
+        var jade = require('jade');
+        var template = fs.readFileSync('components/' + slug + '.jade', 'utf8');
+        var fn = jade.compile(template);
+
+        return fn(properties);
     }
 };
 
