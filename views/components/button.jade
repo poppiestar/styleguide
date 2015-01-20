@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    h1 Buttons
+
+    h2 Description
+    p
+      | Only button elements are to be used to implement a button element.
+      | HTML elements permitted are button, input type="button",
+      | input type="submit" and input type="reset". input type="submit" is
+      | in most cases always the primary action and as such it inherits the
+      | primary button styling by default. In the same manner, the
+      | input type="reset" is likely always a secondary or tertiary button.
+
+    p
+      | The width of a button is determined by the actual textual (and/or
+      | iconographic) content of a button, a button should never be informed
+      | by a parent element for its sizing.
+
+    h1 Default buttons
+
+    each stub in stubs.buttons
+        .preview
+            h2= stub.section_title
+
+            h3 Preview
+            p!= component('form/button', stub)
+
+            h3 HTML code
+            .code= component('form/button', stub)
+
+            h3 Component call
+            .code component('form/button', { type: 'submit', value: 'Submit button' })
+

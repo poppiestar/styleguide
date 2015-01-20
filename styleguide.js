@@ -7,13 +7,14 @@ var app = express();
 var glob = require('glob');
 var fs = require('fs');
 var search = require('./lib/search');
+var yaml = require('js-yaml');
 
 app.set('view engine', 'jade');
 
 app.locals = {
     component: function (slug, properties) {
         var jade = require('jade');
-        var template = fs.readFileSync('components/' + slug + '.jade', 'utf8');
+        var template = fs.readFileSync('components/' + slug + '/template.jade', 'utf8');
         var fn = jade.compile(template);
 
         return fn(properties);
@@ -25,6 +26,12 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res) {
     res.render('index', { title: 'Hello', message: 'there' });
+});
+
+app.get('/styleguide/form/button', function (req, res) {
+    var stubs = yaml.safeLoad(fs.readFileSync('components/form/button/stubs.yml', 'utf8'));
+
+    res.render('components/button', { stubs: stubs });
 });
 
 app.get('/colours', function (req, res) {
