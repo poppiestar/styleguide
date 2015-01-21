@@ -24,7 +24,6 @@ app.locals = {
         return yaml.safeLoad(fs.readFileSync('components/' + path + '/stubs.yml', 'utf8'));
     },
     styleguide_component: function (data) {
-        console.log(JSON.stringify({items: data}));
         var template = fs.readFileSync('helpers/templates/styleguide_component.jade', 'utf8');
         var fn = jade.compile(template);
 
