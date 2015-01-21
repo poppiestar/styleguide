@@ -4,10 +4,19 @@ block content
     h1 Buttons
 
     h2 Description
+
     p
       | Only button elements are to be used to implement a button element.
-      | HTML elements permitted are button, input type="button",
-      | input type="submit" and input type="reset". input type="submit" is
+      | HTML elements permitted are 
+      span= '<button>'
+      | ,
+      span= '<input type="button">'
+      | ,
+      span= '<input type="submit">'
+      |  and
+      span= '<input type="reset">'
+      | .
+      | <input type="submit" /> and input type="reset". input type="submit" is
       | in most cases always the primary action and as such it inherits the
       | primary button styling by default. In the same manner, the
       | input type="reset" is likely always a secondary or tertiary button.
@@ -19,16 +28,7 @@ block content
 
     h1 Default buttons
 
-    each stub in stubs.buttons
-        .preview
-            h2= stub.section_title
+    - var stubs = styleguide_stubs('form/button')
 
-            h3 Preview
-            p!= component('form/button', stub)
-
-            h3 HTML code
-            .code= component('form/button', stub)
-
-            h3 Component call
-            .code component('form/button', { type: 'submit', value: 'Submit button' })
+    != styleguide_component(stubs.buttons)
 

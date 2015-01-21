@@ -8,16 +8,31 @@ var glob = require('glob');
 var fs = require('fs');
 var search = require('./lib/search');
 var yaml = require('js-yaml');
+var jade = require('jade');
+var jsonFormat = require('json-format');
 
 app.set('view engine', 'jade');
 
 app.locals = {
     component: function (slug, properties) {
-        var jade = require('jade');
         var template = fs.readFileSync('components/' + slug + '/template.jade', 'utf8');
         var fn = jade.compile(template);
 
         return fn(properties);
+    },
+    styleguide_stubs: function (path) {
+        return yaml.safeLoad(fs.readFileSync('components/' + path + '/stubs.yml', 'utf8'));
+    },
+    styleguide_component: function (data) {
+        console.log(JSON.stringify({items: data}));
+        var template = fs.readFileSync('helpers/templates/styleguide_component.jade', 'utf8');
+        var fn = jade.compile(template);
+
+        return fn({
+            items: data,
+            jsonFormat: jsonFormat,
+            component: app.locals.component
+        });
     }
 };
 
@@ -29,9 +44,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/styleguide/form/button', function (req, res) {
-    var stubs = yaml.safeLoad(fs.readFileSync('components/form/button/stubs.yml', 'utf8'));
-
-    res.render('components/button', { stubs: stubs });
+    res.render('components/button');
 });
 
 app.get('/colours', function (req, res) {
