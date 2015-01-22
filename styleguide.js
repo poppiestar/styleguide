@@ -10,15 +10,11 @@ var search = require('./lib/search');
 var yaml = require('js-yaml');
 var jade = require('jade');
 var jsonFormat = require('json-format');
-var marked = require('marked');
+var htmlFormat = require('html');
 
 app.set('view engine', 'jade');
 
 app.locals = {
-    description: function (slug) {
-        var file = fs.readFileSync('components/' + slug + '/description.markdown', 'utf8');
-        return marked(file, {sanitize: true});
-    },
     component: function (slug, properties) {
         var template = fs.readFileSync('components/' + slug + '/template.jade', 'utf8');
         var fn = jade.compile(template);
@@ -28,27 +24,29 @@ app.locals = {
     styleguide_stubs: function (path) {
         return yaml.safeLoad(fs.readFileSync('components/' + path + '/stubs.yml', 'utf8'));
     },
-    styleguide_component: function (data) {
+    styleguide_component: function (slug, data) {
         var template = fs.readFileSync('helpers/templates/styleguide_component.jade', 'utf8');
         var fn = jade.compile(template);
 
-        return fn({
-            items: data,
-            jsonFormat: jsonFormat,
-            component: app.locals.component
-        });
+        data.jsonFormat = jsonFormat;
+        data.htmlFormat = htmlFormat.prettyPrint;
+        data.component = app.locals.component;
+        data.slug = slug;
+
+        return fn(data);
     }
 };
 
 app.use(express.static(__dirname + '/public'));
 
-
 app.get('/', function (req, res) {
     res.render('index', { title: 'Hello', message: 'there' });
 });
 
-app.get('/styleguide/form/button', function (req, res) {
-    res.render('components/button');
+app.get('/styleguide/:section/:component', function (req, res) {
+    var slug = req.params.section + '/' + req.params.component;
+
+    res.render('component', {slug: slug});
 });
 
 app.get('/colours', function (req, res) {

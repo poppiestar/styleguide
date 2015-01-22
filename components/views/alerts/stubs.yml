@@ -1,0 +1,26 @@
+main_title: "Alerts"
+description: 
+  - "A (feedback) message is rendered in its dedicated section element with one of four classes; the Information message has a section classname messaging-info, the Confirmation message a classname messaging-confirm, the Warning message a classname messaging-warning and the Danger message a classname messaging-danger. The height is defined by the content of the message with the width defined by the message’s parent container."
+
+sections:
+  -
+    section_title: "Information"
+    data:
+      type: "info"
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+  -
+    section_title: "Confirmation"
+    data:
+      type: "confirm"
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+  -
+    section_title: "Warning"
+    data:
+      type: "warning"
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+  -
+    section_title: "Danger"
+    data:
+      type: "danger"
+      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+

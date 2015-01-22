@@ -1,14 +1,21 @@
+h1= main_title
 
-each item in items
+each paragraph in description
+    p!= paragraph 
+
+each section in sections
   .preview
-    h2= item.section_title
+    h2= section.section_title
 
     h3 Preview
-    p!= component('form/button', item.data)
+    p!= component(slug, section.data)
 
     h3 HTML code
-    code= component('form/button', item.data)
+    pre.code= htmlFormat(component(slug, section.data))
 
     h3 Component call
-    pre component('form/button', #{jsonFormat(item.data)})
+    pre.code
+      | component('#{slug}', {as below})
+      .component-data
+        | #{jsonFormat(section.data)}
 

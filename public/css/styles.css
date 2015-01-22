@@ -1,8 +1,9 @@
-#content {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+body {
+    font-family: 'NexusSans', 'Helvetica Light', 'Helvetica', 'Arial' ,sans-serif;
+    font-size: 1.25rem;
+    color: #323232;
+    -moz-osx-font-smoothing: grayscale;
 }
-
 
 .colours {
     list-style: none;
@@ -19,7 +20,6 @@
     box-shadow: 0 1px 1px #abc;
 }
 
-
 .colourSwatch {
     border: 1px solid grey;
     text-align: center;
@@ -28,5 +28,18 @@
 
 .dark {
     color: #fff;
+}
+
+.code {
+    border: 1px solid #969696;
+    padding: 0.667rem;
+}
+
+.component-data {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #FBFCFD;
+    border: 1px solid #DEE2E6;
+    overflow: scroll;
 }
 

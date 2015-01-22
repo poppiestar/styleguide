@@ -1,0 +1,29 @@
+%alert {
+	border-width: 1px;
+	border-style: solid;
+}
+
+.messaging-info {
+	@extend %alert;
+	border-color: #46C7F4;
+	background-color: #EBF7FD;
+}
+
+.messaging-confirm {
+	@extend %alert;
+	border-color: #B4ED48;
+	background-color: #E7F9C2;
+}
+
+.messaging-warning {
+	@extend %alert;
+	border-color: #FFCC05;
+	background-color: #FFF4D4;
+}
+
+.messaging-danger {
+	@extend %alert;
+	border-color: #ED1548;
+	background-color: #FFD9E7;
+}
+

@@ -1,4 +1,36 @@
-.component {
-  color: red;
+input {
+  border-width: 0.296rem;
+  border-style: solid;
+  background: #fff;
+  border-radius: 0;
+  line-height: normal;
+  font: inherit;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  border-color: #007398;
+  padding: 0.111rem 1rem 0px;
+  height: 2.292em;
+  transition: all 0.111s ease-out 0s;
+  color: #007398;
+
+  &:hover {
+    transition: all 0.074s ease-out 0s;
+    background: #007398;
+    color: #fff;
+  }
+}
+
+input[disabled="disabled"] {
+  background: #fff;
+  border-color: #737373;
+  color: #737373;
+  cursor: not-allowed !important;
+
+  &:hover {
+    background: #fff;
+    color: #737373;
+  }
 }
 
