@@ -10,10 +10,15 @@ var search = require('./lib/search');
 var yaml = require('js-yaml');
 var jade = require('jade');
 var jsonFormat = require('json-format');
+var marked = require('marked');
 
 app.set('view engine', 'jade');
 
 app.locals = {
+    description: function (slug) {
+        var file = fs.readFileSync('components/' + slug + '/description.markdown', 'utf8');
+        return marked(file, {sanitize: true});
+    },
     component: function (slug, properties) {
         var template = fs.readFileSync('components/' + slug + '/template.jade', 'utf8');
         var fn = jade.compile(template);

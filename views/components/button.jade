@@ -1,32 +1,7 @@
 extends ../layout
 
 block content
-    h1 Buttons
-
-    h2 Description
-
-    p
-      | Only button elements are to be used to implement a button element.
-      | HTML elements permitted are 
-      span= '<button>'
-      | ,
-      span= '<input type="button">'
-      | ,
-      span= '<input type="submit">'
-      |  and
-      span= '<input type="reset">'
-      | .
-      | <input type="submit" /> and input type="reset". input type="submit" is
-      | in most cases always the primary action and as such it inherits the
-      | primary button styling by default. In the same manner, the
-      | input type="reset" is likely always a secondary or tertiary button.
-
-    p
-      | The width of a button is determined by the actual textual (and/or
-      | iconographic) content of a button, a button should never be informed
-      | by a parent element for its sizing.
-
-    h1 Default buttons
+    != description('form/button')
 
     - var stubs = styleguide_stubs('form/button')
 
