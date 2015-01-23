@@ -43,10 +43,16 @@ app.get('/', function (req, res) {
     res.render('index', { title: 'Hello', message: 'there' });
 });
 
-app.get('/styleguide/:section/:component', function (req, res) {
+app.get('/components/:section/:component', function (req, res) {
     var slug = req.params.section + '/' + req.params.component;
 
     res.render('component', {slug: slug});
+});
+
+app.get('/styleguide/:section/:component', function (req, res) {
+    var slug = req.params.section + '/' + req.params.component;
+
+    res.render(slug);
 });
 
 app.get('/colours', function (req, res) {

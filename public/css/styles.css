@@ -5,6 +5,25 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+nav {
+    width: 20%;
+    float: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li + .nav-heading {
+    margin-top: 1rem;
+}
+
+#content {
+    width: 80%;
+    float: left;
+}
+
 .colours {
     list-style: none;
     padding: 0;
