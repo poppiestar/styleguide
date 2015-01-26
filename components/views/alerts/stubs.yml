@@ -1,22 +1,21 @@
-sections:
-  -
-    section_title: "Information"
-    data:
-      type: "info"
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
-  -
-    section_title: "Confirmation"
-    data:
-      type: "confirm"
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
-  -
-    section_title: "Warning"
-    data:
-      type: "warning"
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
-  -
-    section_title: "Danger"
-    data:
-      type: "danger"
-      text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+-
+  section_title: "Information"
+  data:
+    type: "info"
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+-
+  section_title: "Confirmation"
+  data:
+    type: "confirm"
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+-
+  section_title: "Warning"
+  data:
+    type: "warning"
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
+-
+  section_title: "Danger"
+  data:
+    type: "danger"
+    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, quis, eveniet, animi cupiditate rerum libero amet molestias a dolorum doloremque ratione sed eum. Fugit, at, blanditiis nostrum soluta sed reprehenderit!"
 

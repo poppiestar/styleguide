@@ -1,13 +1,12 @@
-submit:
-  -
-    section_title: "Submit button"
-    data:
-      type: "submit"
-      value: "Submit button"
-  -
-    section_title: "Disabled submit button"
-    data:
-      type: "submit"
-      value: "Submit button"
-      disabled: true
+-
+  section_title: "Submit button"
+  data:
+    type: "submit"
+    value: "Submit button"
+-
+  section_title: "Disabled submit button"
+  data:
+    type: "submit"
+    value: "Submit button"
+    disabled: true
 

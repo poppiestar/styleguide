@@ -7,9 +7,13 @@ block content
 
     p The width of a button is determined by the actual textual (and/or iconographic) content of a button, a button should never be informed by a parent element for its sizing.
 
+    - var stubs = styleguide_stubs(slug)
+
     .normal
-        != styleguide_component(slug, {sections: styleguide_stubs(slug)['submit']})
+        each section in stubs
+            != styleguide_component(slug, section)
 
     .darkest
-        != styleguide_component(slug, {sections: styleguide_stubs(slug)['submit']})
+        each section in stubs
+            != styleguide_component(slug, section)
 

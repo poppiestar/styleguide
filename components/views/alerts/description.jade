@@ -8,5 +8,6 @@ block content
     - var stubs = styleguide_stubs(slug)
 
     .normal
-        != styleguide_component(slug, {sections: stubs['sections']})
+        each section in stubs
+            != styleguide_component(slug, section)
 

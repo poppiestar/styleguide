@@ -1,17 +1,14 @@
-h1= main_title
+h2= section_title
 
-each section in sections
-  h2= section.section_title
+h3 Preview
+p!= component(slug, data)
 
-  h3 Preview
-  p!= component(slug, section.data)
+h3 HTML code
+pre.code= htmlFormat(component(slug, data))
 
-  h3 HTML code
-  pre.code= htmlFormat(component(slug, section.data))
-
-  h3 Component call
-  pre.code
-    | component('#{slug}', <b>{as below}</b>)
-    .component-data
-      | #{jsonFormat(section.data)}
+h3 Component call
+pre.code
+  | component('#{slug}', <b>{as below}</b>)
+  .component-data
+    | #{jsonFormat(data)}
 
