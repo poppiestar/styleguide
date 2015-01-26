@@ -18,7 +18,7 @@ app.set('view engine', 'jade');
 app.locals = {
     basedir: __dirname,
     component: function (slug, properties) {
-        var template = fs.readFileSync('components/' + slug + '/template.jade', 'utf8');
+        var template = fs.readFileSync('components/' + slug + '/component.jade', 'utf8');
         var fn = jade.compile(template);
 
         return fn(properties);
@@ -27,7 +27,7 @@ app.locals = {
         return yaml.safeLoad(fs.readFileSync('components/' + path + '/stubs.yml', 'utf8'));
     },
     styleguide_component: function (slug, data) {
-        var template = fs.readFileSync('helpers/templates/styleguide_component.jade', 'utf8');
+        var template = fs.readFileSync('views/styleguide_component.jade', 'utf8');
         var fn = jade.compile(template);
 
         data.jsonFormat = jsonFormat;
@@ -48,7 +48,7 @@ app.get('/', function (req, res) {
 app.get('/components/:section/:component', function (req, res) {
     var slug = req.params.section + '/' + req.params.component;
 
-    res.render(slug + '/component', {slug: slug});
+    res.render(slug + '/description', {slug: slug});
 });
 
 app.get('/styleguide/:section/:component', function (req, res) {
@@ -70,10 +70,22 @@ app.get('/colours', function (req, res) {
             var openFile = files[file];
             var data = fs.readFileSync(openFile, 'utf8');
 
-            filenames.push({
+            var result = {
                 filename: openFile,
-                lines: search.searchFile(data)
-            });
+                lines: search.searchFile(data),
+                variables: []
+            };
+
+            var matches = data.match(/\$.*?;/g);
+            console.log(matches);
+
+            for (var match in matches) {
+                var split = matches[match].split(':');
+                result.variables.push({ name: split[0].trim(), value: split[1].slice(0, split[1].indexOf(';')).trim() });
+            }
+
+            console.log(JSON.stringify(result));
+            filenames.push(result);
         }
         res.render('colours', { filenames: filenames });
     });
