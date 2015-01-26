@@ -12,9 +12,11 @@ var jade = require('jade');
 var jsonFormat = require('json-format');
 var htmlFormat = require('html');
 
+app.set('views', ['./views', './components']);
 app.set('view engine', 'jade');
 
 app.locals = {
+    basedir: __dirname,
     component: function (slug, properties) {
         var template = fs.readFileSync('components/' + slug + '/template.jade', 'utf8');
         var fn = jade.compile(template);
@@ -46,7 +48,7 @@ app.get('/', function (req, res) {
 app.get('/components/:section/:component', function (req, res) {
     var slug = req.params.section + '/' + req.params.component;
 
-    res.render('component', {slug: slug});
+    res.render(slug + '/component', {slug: slug});
 });
 
 app.get('/styleguide/:section/:component', function (req, res) {
