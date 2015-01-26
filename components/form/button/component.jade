@@ -1,6 +1,12 @@
 extends /views/layout
 
 block content
-    h1 THis is a test
-    != styleguide_component(slug, styleguide_stubs(slug))
+    h1 Buttons
+
+    p Only button elements are to be used to implement a button element, HTML elements permitted are &lt;button&gt;, &lt;input type="button"&gt;, &lt;input type="submit"&gt;, and &lt;input type="reset"&gt;. &lt;input type="submit"&gt; is in most cases always the primary action and as such it inherits the primary button styling by default. In the same manner, the &lt;input type="reset"&gt; is likely always a secondary or tertiary button.
+
+    p The width of a button is determined by the actual textual (and/or iconographic) content of a button, a button should never be informed by a parent element for its sizing.
+
+    .normal
+        != styleguide_component(slug, {sections: styleguide_stubs(slug)['submit']})
 
