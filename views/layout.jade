@@ -10,16 +10,12 @@ html
     body
         nav
             ul
-                li.nav-heading Components
-                li
-                    a(href="/styleguide/form/button") Buttons
-                li
-                    a(href="/styleguide/views/alerts") Alerts
-                li.nav-heading Typography
-                li
-                    a(href="/styleguide/typography/headings") Headings
-                li
-                    a(href="/styleguide/typography/bodycopy") Body copy
+                each section in navigation 
+                    li.nav-heading= section.name
+                    each component in section.sections
+                        li
+                            a(href="/styleguide/#{section.name}/#{component}")= component
+
         #content
             block content
 

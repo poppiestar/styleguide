@@ -11,6 +11,7 @@ var yaml = require('js-yaml');
 var jade = require('jade');
 var jsonFormat = require('json-format');
 var htmlFormat = require('html');
+var components = {};
 
 app.set('views', ['views', 'styleguide']);
 app.set('view engine', 'jade');
@@ -36,8 +37,29 @@ app.locals = {
         data.slug = slug;
 
         return fn(data);
-    }
+    },
+    navigation: components
 };
+
+// look for description files in styleguide directory
+glob('styleguide/**/description.*', function (err, files) {
+    for (var file in files) {
+        // strip the description file from the filename
+        var filename = files[file].substr(0, files[file].lastIndexOf('/'));
+
+        // strip the styleguide from the path
+        filename = filename.substr(filename.indexOf('/') + 1);
+
+        // generate nav list
+        var component = filename.split('/');
+
+        if (components[component[0]]) {
+            components[component[0]].sections.push(component[1]);
+        } else {
+            components[component[0]] = { name: component[0], sections: [component[1]] };
+        }
+    }
+});
 
 app.use(express.static(__dirname + '/public'));
 
@@ -63,6 +85,7 @@ app.get('/colours', function (req, res) {
         for (var file in files) {
             var openFile = files[file];
             var data = fs.readFileSync(openFile, 'utf8');
+            var matches = data.match(/\$.*?;/g);
 
             var result = {
                 filename: openFile,
@@ -70,15 +93,12 @@ app.get('/colours', function (req, res) {
                 variables: []
             };
 
-            var matches = data.match(/\$.*?;/g);
-            console.log(matches);
-
             for (var match in matches) {
                 var split = matches[match].split(':');
+
                 result.variables.push({ name: split[0].trim(), value: split[1].slice(0, split[1].indexOf(';')).trim() });
             }
 
-            console.log(JSON.stringify(result));
             filenames.push(result);
         }
         res.render('colours', { filenames: filenames });
@@ -95,4 +115,15 @@ var server = app.listen(3000, function () {
 
     console.log('Example app listening at http://%s:%s', host, port);
 });
+
+/*
+
+on startup:
+
+find all description files to get components
+
+
+
+
+*/
 
