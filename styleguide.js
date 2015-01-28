@@ -12,19 +12,19 @@ var jade = require('jade');
 var jsonFormat = require('json-format');
 var htmlFormat = require('html');
 
-app.set('views', ['./views', './components']);
+app.set('views', ['views', 'styleguide']);
 app.set('view engine', 'jade');
 
 app.locals = {
     basedir: __dirname,
     component: function (slug, properties) {
-        var template = fs.readFileSync('components/' + slug + '/component.jade', 'utf8');
+        var template = fs.readFileSync('styleguide/' + slug + '/component.jade', 'utf8');
         var fn = jade.compile(template);
 
         return fn(properties);
     },
     styleguide_stubs: function (path) {
-        return yaml.safeLoad(fs.readFileSync('components/' + path + '/stubs.yml', 'utf8'));
+        return yaml.safeLoad(fs.readFileSync('styleguide/' + path + '/stubs.yml', 'utf8'));
     },
     styleguide_component: function (slug, data) {
         var template = fs.readFileSync('views/styleguide_component.jade', 'utf8');
@@ -45,16 +45,10 @@ app.get('/', function (req, res) {
     res.render('index', { title: 'Hello', message: 'there' });
 });
 
-app.get('/components/:section/:component', function (req, res) {
-    var slug = req.params.section + '/' + req.params.component;
-
-    res.render(slug + '/description', {slug: slug});
-});
-
 app.get('/styleguide/:section/:component', function (req, res) {
     var slug = req.params.section + '/' + req.params.component;
 
-    res.render(slug);
+    res.render(slug + '/description', {slug: slug});
 });
 
 app.get('/colours', function (req, res) {
