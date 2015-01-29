@@ -12,6 +12,7 @@ var jade = require('jade');
 var jsonFormat = require('json-format');
 var htmlFormat = require('html');
 var components = {};
+var Case = require('case');
 
 app.set('views', ['views', 'styleguide']);
 app.set('view engine', 'jade');
@@ -54,9 +55,9 @@ glob('styleguide/**/description.*', function (err, files) {
         var component = filename.split('/');
 
         if (components[component[0]]) {
-            components[component[0]].sections.push(component[1]);
+            components[component[0]].sections.push(Case.capital(component[1]));
         } else {
-            components[component[0]] = { name: component[0], sections: [component[1]] };
+            components[component[0]] = { name: Case.capital(component[0]), sections: [Case.capital(component[1])] };
         }
     }
 });
