@@ -1,12 +1,15 @@
-h2= section_title
+h3= section_title
 
-h3 Preview
+h4 Preview
+
 p!= component(slug, data)
 
-h3 HTML code
+h4 HTML code
+
 pre.code= htmlFormat(component(slug, data))
 
-h3 Component call
+h4 Component call
+
 pre.code
   | component('#{slug}', <b>{as below}</b>)
   .component-data

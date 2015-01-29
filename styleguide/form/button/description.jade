@@ -10,10 +10,14 @@ block content
     - var stubs = styleguide_stubs(slug)
 
     .normal
+        h2 Plain Buttons
+
         each section in stubs
             != styleguide_component(slug, section)
 
     .darkest
+        h2 Dark-theme buttons
+
         each section in stubs
             != styleguide_component(slug, section)
 
