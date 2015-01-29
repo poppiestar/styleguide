@@ -7,40 +7,20 @@ var app = express();
 var glob = require('glob');
 var fs = require('fs');
 var search = require('./lib/search');
-var yaml = require('js-yaml');
-var jade = require('jade');
-var jsonFormat = require('json-format');
-var htmlFormat = require('html');
 var components = {};
 var Case = require('case');
+var helpers = require('./lib/helpers');
+var extend = require('node.extend');
 
 app.set('views', ['views', 'styleguide']);
 app.set('view engine', 'jade');
 
 app.locals = {
     basedir: __dirname,
-    component: function (slug, properties) {
-        var template = fs.readFileSync('styleguide/' + slug + '/component.jade', 'utf8');
-        var fn = jade.compile(template);
-
-        return fn(properties);
-    },
-    styleguide_stubs: function (path) {
-        return yaml.safeLoad(fs.readFileSync('styleguide/' + path + '/stubs.yml', 'utf8'));
-    },
-    styleguide_component: function (slug, data) {
-        var template = fs.readFileSync('views/styleguide_component.jade', 'utf8');
-        var fn = jade.compile(template);
-
-        data.jsonFormat = jsonFormat;
-        data.htmlFormat = htmlFormat.prettyPrint;
-        data.component = app.locals.component;
-        data.slug = slug;
-
-        return fn(data);
-    },
     navigation: components
 };
+
+extend(app.locals, helpers);
 
 // look for description files in styleguide directory
 glob('styleguide/**/description.*', function (err, files) {
@@ -116,15 +96,4 @@ var server = app.listen(3000, function () {
 
     console.log('Example app listening at http://%s:%s', host, port);
 });
-
-/*
-
-on startup:
-
-find all description files to get components
-
-
-
-
-*/
 
