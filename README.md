@@ -44,6 +44,6 @@ Thanks
 
 I take no credit for any of these ideas, it's just my implementation. I offer the majority
 of credit to [Ian Feather](https://github.com/Ianfeather) who went through multiple iterations
-to get Rizzo to a usable state, as well as everyone at Lonely Planet who helped bring his
+to get Rizzo to a usable state, as well as everyone at Lonely Planet who helped bring these
 ideas to fruition.
 
