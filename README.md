@@ -6,7 +6,7 @@ library, based on the principles developed by Lonely Planet's [Rizzo](https://gi
 project (of which I worked on for a while, alongside a bunch of far cleverer 
 developers than me!).
 
-As it stands now, it provides a _component_ method that can be called within a
+As it stands now, it provides a _component_ function that can be called within a
 template. When passed the name of the template and a rendering context, the 
 compenent will be rendered into the page. There are a couple of example components
 in this repository to demonstrate how I see components should be organised
